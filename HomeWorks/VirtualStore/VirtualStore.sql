@@ -41,3 +41,20 @@ CREATE TABLE "OrderDetails"
 	CONSTRAINT "fk_ProductID" FOREIGN KEY ("ProductID")
 		REFERENCES "Products" ("ProductID")
 );
+
+-- Индексы.
+-- Заказы: поиск заказов по пользователю с сортировкой по дате.
+CREATE INDEX "idx_Orders_UserID" ON "Orders" ("UserID", "OrderDate");
+-- Заказы: фильтр по статусу.
+CREATE INDEX "idx_Orders_Status" ON "Orders" ("Status", "OrderDate");
+-- Детали заказа: детали конкретного заказа.
+CREATE INDEX "idx_OrderDetails_OrderID" ON "OrderDetails" ("OrderID");
+-- Детали заказа: анализ продаж по товарам.
+CREATE INDEX "idx_OrderDetails_ProductID" ON "OrderDetails" ("ProductID");
+-- Продукты: 5 самых дорогих товаров.
+CREATE INDEX "idx_Products_Price" ON "Products" ("Price" DESC);
+-- Продукты: товары с низким запасом (менее 5 штук) — частичный индекс.
+CREATE INDEX "idx_Products_QuantityInStock" ON "Products" ("QuantityInStock")
+	WHERE "QuantityInStock" < 5;
+-- Пользователи: уникальность email (вход в любом регистре).
+CREATE UNIQUE INDEX "ux_Users_Email" ON "Users" (LOWER("Email"));
