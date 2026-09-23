@@ -57,4 +57,4 @@ CREATE INDEX "idx_Products_Price" ON "Products" ("Price" DESC);
 CREATE INDEX "idx_Products_QuantityInStock" ON "Products" ("QuantityInStock")
 	WHERE "QuantityInStock" < 5;
 -- Пользователи: уникальность email (вход в любом регистре).
-CREATE UNIQUE INDEX "idx_Users_Email" ON "Users" (LOWER("Email"));
+CREATE UNIQUE INDEX "ux_Users_Email" ON "Users" (LOWER("Email"));
