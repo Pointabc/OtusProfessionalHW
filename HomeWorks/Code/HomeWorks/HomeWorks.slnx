@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="Multithreaded/Multithreaded.csproj" Id="ee915fe7-ac4b-416e-9adc-36cec0e632be" />
   <Project Path="ReadFilesAsync/ReadFilesAsync.csproj" />
 </Solution>
