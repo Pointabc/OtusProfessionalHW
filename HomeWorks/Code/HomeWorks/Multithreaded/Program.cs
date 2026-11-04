@@ -11,8 +11,8 @@ WriteLine(new string('*', 50));
 #region Вычисление суммы массива целых чисел (синхронно).
 
 WriteLine("Вычисление суммы массива целых чисел (синхронно)...");
-var ar = GenerateIntArray(10000000);
 Stopwatch sw = Stopwatch.StartNew();
+var ar = GenerateIntArray(10000000);
 var sum = GetIntArraySumSync(ar);
 sw.Stop();
 WriteLine($"Сумма массива (вычисление синхронное): {sum}.");
@@ -26,7 +26,8 @@ WriteLine($"Время синхронного вычисления суммы: {
 WriteLine();
 WriteLine(new string('*', 50));
 WriteLine("Вычисление суммы массива целых чисел (асинхронно)...");
-var exceptions = new List<Exception>();
+
+sumResult = 0;
 var threads = new List<Thread>(); // Сохранить threads для ожидания зввершения.
 int quantityThreads = GetNumberThreads();
 if (quantityThreads <= 0) quantityThreads = 1;
@@ -51,10 +52,17 @@ for (int i = 0; i < quantityThreads; i++)
 
     Thread thread = new Thread(() =>
     {
-        int sum = GetIntArraySumThread(ar, startIndex, endIndex);
-        lock (locker)
+        try
         {
-            sumResult += sum;
+            int sum = GetIntArraySumThread(ar, startIndex, endIndex);
+            lock (locker)
+            {
+                sumResult += sum;
+            }
+        }
+        catch (Exception ex)
+        {
+            WriteLine("Ошибка при вычислении подсуммы.", ex);
         }
     });
 
@@ -65,11 +73,11 @@ for (int i = 0; i < quantityThreads; i++)
 foreach (var thread in threads)
     thread.Join(); // Ждем завершения потока.
 
-if (exceptions.Count > 0)
-    throw new AggregateException("Ошибка при вычислении суммы", exceptions);
 sw.Stop();
 WriteLine($"Сумма элементов (Thread) = {sumResult}");
 WriteLine($"Время aсинхронного вычисления суммы: {sw.ElapsedMilliseconds} милисекунд.");
+sumResult = 0;
+
 
 #endregion
 
@@ -77,7 +85,7 @@ WriteLine($"Время aсинхронного вычисления суммы: 
 
 WriteLine(new string('*', 50));
 WriteLine("Вычисление суммы массива целых чисел (асинхронно - PLINQ)...");
-
+currentStart = 0;
 sw.Restart();
 // Включаем параллельный режим и напрямую вычисляем сумму
 int sumPLINQ = ar.AsParallel().Sum();
@@ -133,8 +141,9 @@ static int[] GenerateIntArray(int quantityElements)
         return Array.Empty<int>();
     ;
     int[] intArray = new int[quantityElements];
+    var random = new Random();
     for (int i = 0; i < quantityElements; ++i)
-        intArray[i] = new Random().Next(1, 10);
+        intArray[i] = random.Next(1, 10);
 
     return intArray;
 }
