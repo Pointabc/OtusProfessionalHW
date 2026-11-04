@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Multithreaded/Multithreaded.csproj" Id="ee915fe7-ac4b-416e-9adc-36cec0e632be" />
+  <Project Path="PatternPrototype/PatternPrototype.csproj" Id="2253b69a-cba7-4f78-a2c3-e58cec4373ed" />
   <Project Path="ReadFilesAsync/ReadFilesAsync.csproj" />
 </Solution>
