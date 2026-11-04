@@ -12,6 +12,7 @@ WriteLine(new string('*', 50));
 
 WriteLine("Вычисление суммы массива целых чисел (синхронно)...");
 Stopwatch sw = Stopwatch.StartNew();
+var ar = GenerateIntArray(10000000);
 var sum = GetIntArraySumSync(ar);
 sw.Stop();
 WriteLine($"Сумма массива (вычисление синхронное): {sum}.");
