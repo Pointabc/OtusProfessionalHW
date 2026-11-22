@@ -1,12 +1,11 @@
-﻿using static System.Console;
-using System.Text;
+﻿using System.Text;
 
 namespace MyPatternPrototype.Chat;
 
 /// <summary>
 /// Базовый класс Сообщение.
 /// </summary>
-public class Message : IMyCloneable<Message>
+public class Message : IMyCloneable<Message>, ICloneable
 {
     /// <summary>
     /// ИД сообщения.
@@ -42,5 +41,10 @@ public class Message : IMyCloneable<Message>
     public override string ToString()
     {
         return $"ИД сообщения: {Id}\nОтправлено: {SentAt:HH:mm}\nОтправитель: {Sender}";
+    }
+
+    object ICloneable.Clone()
+    {
+        return Clone();
     }
 }

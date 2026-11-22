@@ -1,6 +1,6 @@
 ﻿namespace MyPatternPrototype.Chat;
 
-public class ReplyMessage : RichTextMessage, IMyCloneable<ReplyMessage>
+public class ReplyMessage : RichTextMessage, IMyCloneable<ReplyMessage>, ICloneable
 {
     public Message QuotedMessage { get; set; }
 
@@ -23,5 +23,10 @@ public class ReplyMessage : RichTextMessage, IMyCloneable<ReplyMessage>
     public override string ToString()
     {
         return base.ToString() + $"; Процитированное сообщение: {QuotedMessage}";
+    }
+
+    object ICloneable.Clone()
+    {
+        return Clone();
     }
 }

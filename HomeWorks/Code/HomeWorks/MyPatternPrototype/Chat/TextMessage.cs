@@ -5,7 +5,7 @@ namespace MyPatternPrototype.Chat;
 /// <summary>
 /// Текстовое сообщение.
 /// </summary>
-public class TextMessage : Message, IMyCloneable<TextMessage>
+public class TextMessage : Message, IMyCloneable<TextMessage>, ICloneable
 {
     public string Text { get; set; }
 
@@ -28,5 +28,10 @@ public class TextMessage : Message, IMyCloneable<TextMessage>
     {
         var message = string.IsNullOrWhiteSpace(Text) ? "Отсутствует сообщение" : Text;
         return base.ToString() + $"\nСообщение: {message}";
+    }
+
+    object ICloneable.Clone()
+    {
+        return Clone();
     }
 }

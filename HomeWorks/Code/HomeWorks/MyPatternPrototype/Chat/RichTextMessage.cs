@@ -1,6 +1,6 @@
 ﻿namespace MyPatternPrototype.Chat;
 
-public class RichTextMessage : TextMessage, IMyCloneable<RichTextMessage>
+public class RichTextMessage : TextMessage, IMyCloneable<RichTextMessage>, ICloneable
 {
     public bool IsBold { get; set; }
 
@@ -20,5 +20,10 @@ public class RichTextMessage : TextMessage, IMyCloneable<RichTextMessage>
     public override string ToString()
     {
         return base.ToString() + $"\nПолужирный: {IsBold}";
+    }
+
+    object ICloneable.Clone()
+    {
+        return Clone();
     }
 }

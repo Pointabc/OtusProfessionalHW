@@ -5,7 +5,7 @@ namespace MyPatternPrototype.Chat;
 /// <summary>
 /// Пересланное сообщение.
 /// </summary>
-public class ForwardedTextMessage : RichTextMessage, IMyCloneable<ForwardedTextMessage>
+public class ForwardedTextMessage : RichTextMessage, IMyCloneable<ForwardedTextMessage>, ICloneable
 {
     public string OriginalSender { get; set; }
     public DateTime OriginalSentAt { get; set; }
@@ -32,5 +32,10 @@ public class ForwardedTextMessage : RichTextMessage, IMyCloneable<ForwardedTextM
     public override string ToString()
     {
         return base.ToString() + $"; От кого сообщение: {OriginalSender}; Когда было создано сообщение: {OriginalSentAt}";
+    }
+
+    object ICloneable.Clone()
+    {
+        return Clone();
     }
 }
