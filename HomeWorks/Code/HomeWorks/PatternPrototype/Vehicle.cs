@@ -3,7 +3,7 @@
 /// <summary>
 /// Базовый класс.
 /// </summary>
-public class Vehicle : IMyCloneable<Vehicle>, ICloneable
+public class Vehicle : IMyCloneable_<Vehicle>, ICloneable
 {
     public string Brand { get; set; }
     public int Year { get; set; }

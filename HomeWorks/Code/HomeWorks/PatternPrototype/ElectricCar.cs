@@ -3,7 +3,7 @@
 /// <summary>
 /// Второй наследник (второе наследование).
 /// </summary>
-public class ElectricCar : Car, IMyCloneable<ElectricCar>
+public class ElectricCar : Car, IMyCloneable_<ElectricCar>
 {
     public int BatteryCapacity { get; set; }
 

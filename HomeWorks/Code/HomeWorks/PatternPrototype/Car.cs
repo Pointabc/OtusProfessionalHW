@@ -3,7 +3,7 @@
 /// <summary>
 /// Первый наследник.
 /// </summary>
-public class Car : Vehicle, IMyCloneable<Car>
+public class Car : Vehicle, IMyCloneable_<Car>
 {
     public int Doors { get; set; }
 

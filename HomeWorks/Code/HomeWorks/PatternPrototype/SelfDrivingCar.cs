@@ -3,7 +3,7 @@
 /// <summary>
 /// Третий наследник (третье наследование).
 /// </summary>
-public class SelfDrivingCar : ElectricCar, IMyCloneable<SelfDrivingCar>
+public class SelfDrivingCar : ElectricCar, IMyCloneable_<SelfDrivingCar>
 {
     public string AutopilotVersion { get; set; }
 

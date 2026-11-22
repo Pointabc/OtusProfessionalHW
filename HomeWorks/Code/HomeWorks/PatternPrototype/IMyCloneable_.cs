@@ -1,6 +1,6 @@
 ﻿namespace PatternPrototype;
 
-public interface IMyCloneable<out T>
+public interface IMyCloneable_<out T>
 {
     T Clone();
 }
