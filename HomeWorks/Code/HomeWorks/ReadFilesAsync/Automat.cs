@@ -25,11 +25,6 @@ internal class Automat
         {
             for (char c = ' '; c < '~'; c++)
             {
-                if (c == 114)
-                {
-                    int a = 15;
-                }
-
                 int k = q + 1;
                 if (q == length)
                     k--;
